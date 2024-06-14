@@ -2,8 +2,10 @@ package com.taekwondo.config;
 
 import com.taekwondo.entity.Role;
 import com.taekwondo.entity.User;
+import com.taekwondo.repository.IFeeRepository;
 import com.taekwondo.repository.IRoleRepository;
 import com.taekwondo.repository.IUserRepository;
+import com.taekwondo.service.FeeService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,20 @@ public class AppConfig {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private IUserRepository userRepository;
+
+    @Autowired
+    private IRoleRepository roleRepository;
+
+    @Autowired
+    private FeeService feeService;
+
     @Bean
     @Transactional
-    ApplicationRunner applicationRunner(IUserRepository userRepository, IRoleRepository roleRepository){
+    ApplicationRunner applicationRunner(){
         return args -> {
+
             if(roleRepository.findById("ADMIN").isEmpty()){
                 Role role = new Role("ADMIN", "Role Manager",new HashSet<>());
                 roleRepository.save(role);

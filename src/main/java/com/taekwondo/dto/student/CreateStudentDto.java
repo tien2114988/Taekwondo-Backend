@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,4 +30,6 @@ public class CreateStudentDto {
 
     @NotNull(message = "Status must not be null")
     private String status;
+
+    private Set<String> fees;
 }

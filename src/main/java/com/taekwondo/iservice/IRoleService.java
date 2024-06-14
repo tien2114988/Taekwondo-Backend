@@ -12,4 +12,5 @@ public interface IRoleService {
     public GetRoleDto createRole(CreateRoleDto createRoleDto);
     public GetRoleDto updateRole(CreateRoleDto createRoleDto);
     public void deleteRole(String id);
+    public List<GetRoleDto> getRolesById(List<String> ids);
 }

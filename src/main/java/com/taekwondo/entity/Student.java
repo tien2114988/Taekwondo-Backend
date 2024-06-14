@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -50,4 +51,7 @@ public class Student {
 	@Column(nullable = false, updatable = false)
 	@CreatedDate
 	private LocalDateTime createdDate;
+
+	@OneToMany(mappedBy = "student")
+	Set<FeePayment> fees;
 }

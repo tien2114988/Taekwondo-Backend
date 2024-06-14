@@ -70,4 +70,10 @@ public class RoleService implements IRoleService {
         Role role = roleRepo.findById(id).orElse(null);
         this.roleRepo.delete(role);
     }
+
+    @Override
+    public List<GetRoleDto> getRolesById(List<String> ids) {
+        List<Role> roles = roleRepo.findAllById(ids);
+        return roles.stream().map(role -> modelMapper.map(role, GetRoleDto.class)).collect(Collectors.toList());
+    }
 }
